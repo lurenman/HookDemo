@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.hookdemo.util.MD5Utils;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hookdemo.common.JNIHelper;
+import com.example.hookdemo.util.MD5Utils;
 
 public class MainActivity extends AppCompatActivity {
     static {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Button btn_native_test;
+    private Button btn_native_add;
 
     native String stringFromJNI();
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btn_click = (Button) findViewById(R.id.btn_click);
         btn_md5 = (Button) findViewById(R.id.btn_md5);
         btn_native_test = (Button) findViewById(R.id.btn_native_test);
+        btn_native_add = (Button) findViewById(R.id.btn_native_add);
         initEvent();
     }
 
@@ -57,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = stringFromJNI();
                 Toast.makeText(mContext, str, Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn_native_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int result = JNIHelper.add(1, 2);
+                Toast.makeText(mContext, "add result:" + result, Toast.LENGTH_SHORT).show();
             }
         });
     }

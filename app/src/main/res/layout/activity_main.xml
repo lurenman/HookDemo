@@ -32,4 +32,12 @@
         android:layout_marginTop="30dp"
         android:text="Native测试"
         app:layout_constraintTop_toBottomOf="@id/btn_md5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_native_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Native_ADD"
+        app:layout_constraintTop_toBottomOf="@id/btn_native_test" />
 </androidx.constraintlayout.widget.ConstraintLayout>
