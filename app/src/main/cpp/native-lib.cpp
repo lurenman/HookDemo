@@ -6,6 +6,8 @@ using namespace std;
 
 extern "C" JNIEXPORT jstring
 
+
+
 JNICALL
 Java_com_example_hookdemo_MainActivity_stringFromJNI(
         JNIEnv *env,
@@ -47,4 +49,23 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *__unused) {
     LOGD("JNI_OnLoad called!");
 
     return result;
+}
+
+/**
+ * 编译生成后在.init段
+ */
+extern "C" void _init(void) {
+    LOGD("ndk so init!");
+}
+
+/**
+ * 编译生成后在.init_array段
+ * 编译生成后在.init_array段 [名字可以更改]
+ */
+__attribute__((constructor)) void _pp_init(void) {
+    LOGD("ndk so init_array _pp_init!");
+}
+
+__attribute__((constructor)) void _pp_init1(void) {
+    LOGD("ndk so init_array _pp_init1!");
 }
