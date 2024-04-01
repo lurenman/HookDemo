@@ -40,4 +40,28 @@
         android:layout_marginTop="30dp"
         android:text="Native_ADD"
         app:layout_constraintTop_toBottomOf="@id/btn_native_test" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_root_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="root检测"
+        app:layout_constraintTop_toBottomOf="@id/btn_native_add" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_native_RegisterNativeTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="RegisterNativeTest"
+        app:layout_constraintTop_toBottomOf="@id/btn_root_check" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_native_NativeHook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="NativeHook"
+        app:layout_constraintTop_toBottomOf="@id/btn_native_RegisterNativeTest" />
 </androidx.constraintlayout.widget.ConstraintLayout>

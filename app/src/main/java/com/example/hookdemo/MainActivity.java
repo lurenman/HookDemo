@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.hookdemo.common.JNIHelper;
 import com.example.hookdemo.util.MD5Utils;
+import com.example.hookdemo.util.RootUtils;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     static {
@@ -19,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btn_native_test;
     private Button btn_native_add;
+    private Button btn_native_RegisterNativeTest;
+    private Button btn_native_NativeHook;
+    private Button btn_root_check;
 
     native String stringFromJNI();
 
@@ -36,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         btn_md5 = (Button) findViewById(R.id.btn_md5);
         btn_native_test = (Button) findViewById(R.id.btn_native_test);
         btn_native_add = (Button) findViewById(R.id.btn_native_add);
+        btn_root_check = (Button) findViewById(R.id.btn_root_check);
+        btn_native_RegisterNativeTest = (Button) findViewById(R.id.btn_native_RegisterNativeTest);
+        btn_native_NativeHook = (Button) findViewById(R.id.btn_native_NativeHook);
         initEvent();
     }
 
@@ -67,6 +74,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int result = JNIHelper.add(1, 2);
                 Toast.makeText(mContext, "add result:" + result, Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn_root_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean deviceRooted = RootUtils.isDeviceRooted();
+                Toast.makeText(mContext, "isRoot:" + deviceRooted, Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn_native_RegisterNativeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JNIHelper.RegisterNativeTest("hello");
+            }
+        });
+        btn_native_NativeHook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JNIHelper.NativeHook();
             }
         });
     }

@@ -26,7 +26,17 @@ project("hookdemo")
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
-        native-lib.cpp)
+        native-lib.cpp
+        #inlineHook
+        #        inlineHook/relocate.c
+        #        inlineHook/inlineHook.c
+        inlineHook64/And64InlineHook.cpp
+        #Substrate
+        Substrate/hde64.c
+        Substrate/SubstrateDebug.cpp
+        Substrate/SubstrateHook.cpp
+        Substrate/SubstratePosixMemory.cpp
+)
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     # Debug build settings
     add_definitions(-DDEBUG)
