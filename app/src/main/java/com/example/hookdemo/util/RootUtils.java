@@ -2,6 +2,8 @@ package com.example.hookdemo.util;
 
 import android.util.Log;
 
+import com.example.hookdemo.common.JNIHelper;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -21,10 +23,12 @@ public class RootUtils {
     private static String LOG_TAG = RootUtils.class.getName();
 
     public static boolean isSuFileExists() {
-        File suFile = new File("/system/bin/su");
-        boolean exists = suFile.exists();
-        Log.e(LOG_TAG, "isSuFileExists:" + exists);
-        return exists;
+        boolean b = JNIHelper.RootCheck();
+//        File suFile = new File("/system/bin/su");
+//        boolean exists = suFile.exists();
+//        Log.e(LOG_TAG, "isSuFileExists:" + exists);
+        Log.e(LOG_TAG, "isSuFileExists:" + b);
+        return b;
     }
 
     public static boolean checkGetRootAuth() {

@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "common/logger.h"
+#include "core/RootCheck.hpp"
 
 #ifdef __aarch64__
 #include "inlineHook64/And64InlineHook.hpp"
@@ -63,7 +64,7 @@ int (*source_openat)(int fd, const char *path, int oflag, int mode) = nullptr;
 
 int MyOpenAt(int fd, const char *pathname, int flags, int mode) {
     //LOG(ERROR) << "MyOpenAt  pathname   "<<pathname;
-
+    LOGD("MyOpenAt pathname: %s", pathname);
     if (strcmp(pathname, "/system/xbin/su") != 0 || strcmp(pathname, "/system/bin/su") != 0) {
         pathname = "/system/xbin/Mysu";
     }
@@ -75,12 +76,28 @@ void hookOpenAt() {
     if (!libc_handle) {
         LOGD("libc_handle is null");
     }
-    void *__openat = dlsym(libc_handle, "openat");
-    if (__openat == nullptr) {
-        LOGD("__openat nullptr");
+    void *_openat = dlsym(libc_handle, "openat");
+    void *_openat1 = dlsym(libc_handle, "openat64");
+    void *_openat2 = dlsym(libc_handle, "__openat_2");
+    if (_openat == nullptr) {
+        LOGD("_openat nullptr");
         return;
     }
-    hook_function((void *) __openat,
+    hook_function((void *) _openat,
+                  (void *) MyOpenAt,
+                  (void **) &source_openat);
+    if (_openat1 == nullptr) {
+        LOGD("_openat1 nullptr");
+        return;
+    }
+    hook_function((void *) _openat1,
+                  (void *) MyOpenAt,
+                  (void **) &source_openat);
+    if (_openat2 == nullptr) {
+        LOGD("_openat2 nullptr");
+        return;
+    }
+    hook_function((void *) _openat2,
                   (void *) MyOpenAt,
                   (void **) &source_openat);
     LOGD("hook_function __openat");
@@ -94,11 +111,18 @@ void NativeHook(JNIEnv *env, jclass clazz) {
     hookOpenAt();
 }
 
+jboolean rootCheck(JNIEnv *env, jclass clazz) {
+    bool root = RootCheck::getroot();
+    LOGD("RootCheck root = %d", root);
+    return root;
+}
+
 // Define JNI methods to be registered
 static JNINativeMethod jniMethods[] = {
         {"add",                "(II)I",                 (void *) add},
         {"RegisterNativeTest", "(Ljava/lang/String;)V", (void *) RegisterNativeTest},
         {"NativeHook",         "()V",                   (void *) NativeHook},
+        {"RootCheck",          "()Z",                   (void *) rootCheck},
 };
 
 // Define JNI library registration function

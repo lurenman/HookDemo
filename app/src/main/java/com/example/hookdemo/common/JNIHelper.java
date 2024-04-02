@@ -5,4 +5,6 @@ public class JNIHelper {
 
     public native static int add(int a, int b);
     public native static void NativeHook();
+
+    public native static boolean RootCheck();
 }
