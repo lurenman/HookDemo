@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "common/logger.h"
 #include "core/RootCheck.hpp"
+#include "xhook/xhook.h"
 
 #ifdef __aarch64__
 #include "inlineHook64/And64InlineHook.hpp"
@@ -38,6 +39,7 @@ void RegisterNativeTest(JNIEnv *env, jclass clazz, jstring str) {
 
 jint add(JNIEnv *env, jclass clazz, jint ja, jint jb) {
     int result = ja + jb;
+    LOGD("add: %d", result);
     return static_cast<jint>(result);
 }
 
@@ -69,6 +71,19 @@ int MyOpenAt(int fd, const char *pathname, int flags, int mode) {
         pathname = "/system/xbin/Mysu";
     }
     return source_openat(fd, pathname, flags, mode);
+}
+
+int my_system_log_print(int prio, const char *tag, const char *fmt, ...) {
+    va_list ap;
+    char buf[1024];
+    int r;
+
+    snprintf(buf, sizeof(buf), "[%s] %s", (NULL == tag ? "" : tag), (NULL == fmt ? "" : fmt));
+
+    va_start(ap, fmt);
+    r = __android_log_vprint(prio, "xhook_system", buf, ap);
+    va_end(ap);
+    return r;
 }
 
 void hookOpenAt() {
@@ -103,12 +118,27 @@ void hookOpenAt() {
     LOGD("hook_function __openat");
 }
 
-void NativeHook(JNIEnv *env, jclass clazz) {
-    LOGD("NativeHook 执行");
+void inlineHook(JNIEnv *env, jclass clazz) {
+    LOGD("inlineHook 执行");
 //    hook_function((void *) RegisterNativeTest,
 //                  (void *) MyRegisterNativeTest,
 //                  (void **) &Source_RegisterNativeTest);
     hookOpenAt();
+}
+
+void xHook(JNIEnv *env, jclass clazz) {
+    LOGD("xHook 执行");
+    int result_system = xhook_register("^/system/.*\\.so$", "__android_log_print",
+                                       (void *) my_system_log_print, NULL);
+    int result_vendor = xhook_register("^/vendor/.*\\.so$", "__android_log_print",
+                                       (void *) my_system_log_print, NULL);
+    int result_hookdemo = xhook_register(".*/libhookdemo\\.so$", "__android_log_print",
+                                         (void *) my_system_log_print,
+                                         NULL);
+    LOGD("result_system :%d", result_system);
+    LOGD("result_vendor :%d", result_vendor);
+    LOGD("result_hookdemo :%d", result_hookdemo);
+
 }
 
 jboolean rootCheck(JNIEnv *env, jclass clazz) {
@@ -121,8 +151,9 @@ jboolean rootCheck(JNIEnv *env, jclass clazz) {
 static JNINativeMethod jniMethods[] = {
         {"add",                "(II)I",                 (void *) add},
         {"RegisterNativeTest", "(Ljava/lang/String;)V", (void *) RegisterNativeTest},
-        {"NativeHook",         "()V",                   (void *) NativeHook},
+        {"InlineHook",         "()V",                   (void *) inlineHook},
         {"RootCheck",          "()Z",                   (void *) rootCheck},
+        {"XHook",              "()V",                   (void *) xHook},
 };
 
 // Define JNI library registration function

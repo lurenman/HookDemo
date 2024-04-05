@@ -58,10 +58,18 @@
         app:layout_constraintTop_toBottomOf="@id/btn_root_check" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_NativeHook"
+        android:id="@+id/btn_native_InlineHook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="NativeHook"
+        android:text="InlineHook"
         app:layout_constraintTop_toBottomOf="@id/btn_native_RegisterNativeTest" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_native_xhook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="xhook"
+        app:layout_constraintTop_toBottomOf="@id/btn_native_InlineHook" />
 </androidx.constraintlayout.widget.ConstraintLayout>

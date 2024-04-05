@@ -37,6 +37,14 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         Substrate/SubstrateDebug.cpp
         Substrate/SubstrateHook.cpp
         Substrate/SubstratePosixMemory.cpp
+        #xHook
+        xhook/xh_core.c
+        xhook/xh_elf.c
+        xhook/xh_jni.c
+        xhook/xh_log.c
+        xhook/xh_version.c
+        xhook/xhook.c
+        xhook/xh_util.c
 )
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     # Debug build settings
