@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.hookdemo.common.JNIHelper;
 import com.example.hookdemo.util.MD5Utils;
+import com.example.hookdemo.util.MacAddressUtils;
 import com.example.hookdemo.util.RootUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_root_check;
     private Button btn_native_xhook;
     private Button btn_native_InlineAsm;
+    private Button btn_native_mac_address;
 
     native String stringFromJNI();
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btn_native_InlineHook = (Button) findViewById(R.id.btn_native_InlineHook);
         btn_native_xhook = (Button) findViewById(R.id.btn_native_xhook);
         btn_native_InlineAsm = (Button) findViewById(R.id.btn_native_InlineAsm);
+        btn_native_mac_address = (Button) findViewById(R.id.btn_native_mac_address);
         initEvent();
     }
 
@@ -109,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 JNIHelper.InlineAsm();
+            }
+        });
+        btn_native_mac_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String macAddress = MacAddressUtils.getMacAddress();
+                Toast.makeText(mContext, "macAddress:" + macAddress, Toast.LENGTH_SHORT).show();
             }
         });
     }

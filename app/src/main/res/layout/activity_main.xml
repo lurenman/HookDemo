@@ -8,76 +8,97 @@
     android:paddingRight="18dp"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_click"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="点击"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_md5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="md5加密"
-        app:layout_constraintTop_toBottomOf="@id/btn_click" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Native测试"
-        app:layout_constraintTop_toBottomOf="@id/btn_md5" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_click"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点击"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Native_ADD"
-        app:layout_constraintTop_toBottomOf="@id/btn_native_test" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_md5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="md5加密"
+                app:layout_constraintTop_toBottomOf="@id/btn_click" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_root_check"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="root检测"
-        app:layout_constraintTop_toBottomOf="@id/btn_native_add" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Native测试"
+                app:layout_constraintTop_toBottomOf="@id/btn_md5" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_RegisterNativeTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="RegisterNativeTest"
-        app:layout_constraintTop_toBottomOf="@id/btn_root_check" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Native_ADD"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_test" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_InlineHook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="InlineHook"
-        app:layout_constraintTop_toBottomOf="@id/btn_native_RegisterNativeTest" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_root_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="root检测"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_add" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_xhook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="xhook"
-        app:layout_constraintTop_toBottomOf="@id/btn_native_InlineHook" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_RegisterNativeTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="RegisterNativeTest"
+                app:layout_constraintTop_toBottomOf="@id/btn_root_check" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_native_InlineAsm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="内联汇编"
-        app:layout_constraintTop_toBottomOf="@id/btn_native_xhook" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_InlineHook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="InlineHook"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_RegisterNativeTest" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_xhook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="xhook"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_InlineHook" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_InlineAsm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="内联汇编"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_xhook" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_native_mac_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="mac地址"
+                app:layout_constraintTop_toBottomOf="@id/btn_native_InlineAsm" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
