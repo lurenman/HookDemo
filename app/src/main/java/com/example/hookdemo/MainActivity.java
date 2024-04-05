@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_native_InlineHook;
     private Button btn_root_check;
     private Button btn_native_xhook;
+    private Button btn_native_InlineAsm;
 
     native String stringFromJNI();
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btn_native_RegisterNativeTest = (Button) findViewById(R.id.btn_native_RegisterNativeTest);
         btn_native_InlineHook = (Button) findViewById(R.id.btn_native_InlineHook);
         btn_native_xhook = (Button) findViewById(R.id.btn_native_xhook);
+        btn_native_InlineAsm = (Button) findViewById(R.id.btn_native_InlineAsm);
         initEvent();
     }
 
@@ -101,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 JNIHelper.XHook();
+            }
+        });
+        btn_native_InlineAsm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JNIHelper.InlineAsm();
             }
         });
     }

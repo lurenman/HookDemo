@@ -9,6 +9,7 @@
 #include "common/logger.h"
 #include "core/RootCheck.hpp"
 #include "xhook/xhook.h"
+#include "core/InlineAsm.h"
 
 #ifdef __aarch64__
 #include "inlineHook64/And64InlineHook.hpp"
@@ -147,6 +148,16 @@ jboolean rootCheck(JNIEnv *env, jclass clazz) {
     return root;
 }
 
+/**
+ * 内联汇编
+ * @param env
+ * @param clazz
+ */
+void inlineAsm(JNIEnv *env, jclass clazz) {
+    long result = InlineAsm::test_inline_asm_add(20);
+    LOGD("inlineAsm result = %ld", result);
+}
+
 // Define JNI methods to be registered
 static JNINativeMethod jniMethods[] = {
         {"add",                "(II)I",                 (void *) add},
@@ -154,6 +165,7 @@ static JNINativeMethod jniMethods[] = {
         {"InlineHook",         "()V",                   (void *) inlineHook},
         {"RootCheck",          "()Z",                   (void *) rootCheck},
         {"XHook",              "()V",                   (void *) xHook},
+        {"InlineAsm",          "()V",                   (void *) inlineAsm},
 };
 
 // Define JNI library registration function

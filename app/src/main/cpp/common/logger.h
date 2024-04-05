@@ -8,9 +8,7 @@
 #include <android/log.h>
 
 #define TAG "NDK_DEMO"
-#define DEBUG
 #ifdef DEBUG
-
 #define LOG(_level, ...) do { \
         char logBuffer[4096];                                              \
         snprintf(logBuffer, sizeof(logBuffer), __VA_ARGS__);            \
@@ -20,6 +18,7 @@
 #define LOGI(...) LOG(ANDROID_LOG_INFO,__VA_ARGS__)
 #define LOGV(...) LOG(ANDROID_LOG_VERBOSE,__VA_ARGS__)
 #define LOGD(...) LOG(ANDROID_LOG_DEBUG, __VA_ARGS__)
+#define LOGE(...) LOG(ANDROID_LOG_ERROR, __VA_ARGS__)
 #define LOGW(...) LOG(ANDROID_LOG_WARN,__VA_ARGS__)
 #else
 #define LOGI(...)

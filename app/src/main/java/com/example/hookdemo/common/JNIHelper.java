@@ -8,5 +8,9 @@ public class JNIHelper {
     public native static void InlineHook();
 
     public native static boolean RootCheck();
+
     public native static void XHook();
+
+    public native static void InlineAsm();
+
 }

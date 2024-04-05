@@ -72,4 +72,12 @@
         android:layout_marginTop="30dp"
         android:text="xhook"
         app:layout_constraintTop_toBottomOf="@id/btn_native_InlineHook" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_native_InlineAsm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="内联汇编"
+        app:layout_constraintTop_toBottomOf="@id/btn_native_xhook" />
 </androidx.constraintlayout.widget.ConstraintLayout>
