@@ -11,6 +11,7 @@ import com.example.hookdemo.common.JNIHelper;
 import com.example.hookdemo.util.MD5Utils;
 import com.example.hookdemo.util.MacAddressUtils;
 import com.example.hookdemo.util.RootUtils;
+import com.example.hookdemo.util.SandhookUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_native_xhook;
     private Button btn_native_InlineAsm;
     private Button btn_native_mac_address;
+    private Button btn_sandhook;
+    private Button btn_sandhook_native;
 
     native String stringFromJNI();
 
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         btn_native_xhook = (Button) findViewById(R.id.btn_native_xhook);
         btn_native_InlineAsm = (Button) findViewById(R.id.btn_native_InlineAsm);
         btn_native_mac_address = (Button) findViewById(R.id.btn_native_mac_address);
+        btn_sandhook = (Button) findViewById(R.id.btn_sandhook);
+        btn_sandhook_native = (Button) findViewById(R.id.btn_sandhook_native);
         initEvent();
     }
 
@@ -119,6 +124,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String macAddress = MacAddressUtils.getMacAddress();
                 Toast.makeText(mContext, "macAddress:" + macAddress, Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn_sandhook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SandhookUtils.hook(mContext);
+            }
+        });
+        btn_sandhook_native.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JNIHelper.Sandhook();
             }
         });
     }

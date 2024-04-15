@@ -158,6 +158,11 @@ void inlineAsm(JNIEnv *env, jclass clazz) {
     LOGD("inlineAsm result = %ld", result);
 }
 
+void sandhook(JNIEnv *env, jclass clazz) {
+    long result = InlineAsm::test_inline_asm_add(20);
+    LOGD("inlineAsm result = %ld", result);
+}
+
 // Define JNI methods to be registered
 static JNINativeMethod jniMethods[] = {
         {"add",                "(II)I",                 (void *) add},
@@ -166,6 +171,7 @@ static JNINativeMethod jniMethods[] = {
         {"RootCheck",          "()Z",                   (void *) rootCheck},
         {"XHook",              "()V",                   (void *) xHook},
         {"InlineAsm",          "()V",                   (void *) inlineAsm},
+        {"Sandhook",           "()V",                   (void *) sandhook},
 };
 
 // Define JNI library registration function

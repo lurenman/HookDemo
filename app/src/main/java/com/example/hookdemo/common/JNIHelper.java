@@ -12,5 +12,5 @@ public class JNIHelper {
     public native static void XHook();
 
     public native static void InlineAsm();
-
+    public native static void Sandhook();
 }

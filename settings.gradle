@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -9,9 +10,10 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        jcenter()
         mavenCentral()
     }
 }
 rootProject.name = "HookDemo"
-include ':app'
+include ':app',':sandhook:hooklib',':sandhook:nativehook',':sandhook:xposedcompat',':sandhook:annotation'
 

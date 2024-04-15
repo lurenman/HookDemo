@@ -53,5 +53,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-
+    implementation project(":sandhook:hooklib")
+    implementation project(":sandhook:nativehook")
+    implementation project(":sandhook:xposedcompat")
+//    implementation 'com.swift.sandhook:hooklib:4.2.0'
+//    // need for android 11
+//    implementation 'com.swift.sandhook:nativehook:4.2.0'
+//    //stable
+//    implementation 'com.swift.sandhook:xposedcompat:4.2.0'
 }
