@@ -25,8 +25,12 @@ created time: 2015-11-30
 #endif
 
 #define PAGE_START(addr)	(~(PAGE_SIZE - 1) & (addr))
+//在对一个函数进行Inline Hook时，首先需要判断当前函数指令是Arm指令还是Thumb指令，指令使用目标地址值的bit[0]来确定目标地址的指令类型。bit[0]的值为1时，目标程序为Thumb指令；bit[0]值为0时，目标程序为ARM指令。其相关实现代码为以下宏
+// 设置bit[0]的值为1
 #define SET_BIT0(addr)		(addr | 1)
+// 设置bit[0]的值为0
 #define CLEAR_BIT0(addr)	(addr & 0xFFFFFFFE)
+// 测试bit[0]的值，若为1则返回真，若为0则返回假
 #define TEST_BIT0(addr)		(addr & 1)
 
 #define ACTION_ENABLE	0

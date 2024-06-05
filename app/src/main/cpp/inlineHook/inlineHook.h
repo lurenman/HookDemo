@@ -2,7 +2,7 @@
 #define _INLINEHOOK_H
 
 #include <stdio.h>
-
+//参考：https://blog.csdn.net/earbao/article/details/51605612
 #ifdef __cplusplus
 extern "C" {
 #endif
