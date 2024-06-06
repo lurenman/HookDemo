@@ -47,6 +47,9 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         xhook/xh_version.c
         xhook/xhook.c
         xhook/xh_util.c
+        #dlfc
+        dlfc/dlfcn_nougat.cpp
+        dlfc/dlfcn_compat.cpp
 )
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     # Debug build settings
