@@ -159,8 +159,7 @@ void inlineAsm(JNIEnv *env, jclass clazz) {
 }
 
 void sandhook(JNIEnv *env, jclass clazz) {
-    long result = InlineAsm::test_inline_asm_add(20);
-    LOGD("inlineAsm result = %ld", result);
+
 }
 
 // Define JNI methods to be registered

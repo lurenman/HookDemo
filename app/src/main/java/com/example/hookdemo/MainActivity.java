@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_native_mac_address;
     private Button btn_sandhook;
     private Button btn_sandhook_native;
+    private Button btn_io_redirected;
 
     native String stringFromJNI();
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btn_native_mac_address = (Button) findViewById(R.id.btn_native_mac_address);
         btn_sandhook = (Button) findViewById(R.id.btn_sandhook);
         btn_sandhook_native = (Button) findViewById(R.id.btn_sandhook_native);
+        btn_io_redirected = (Button) findViewById(R.id.btn_io_redirected);
         initEvent();
     }
 
@@ -136,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 JNIHelper.Sandhook();
+            }
+        });
+        btn_io_redirected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
